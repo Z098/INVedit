@@ -1,7 +1,7 @@
-INVedit
+Z098 INVedit
 =======
 
-INVedit is an inventory editor for the game [Minecraft][1].
+Z098 INVedit is an inventory editor for the game [Minecraft][1].
 
 ![Screenshot][2]
 
@@ -23,7 +23,7 @@ Features
 Requirements
 ------------
 
-- .NET Framework 4.0 Client Profile
+- .NET Framework 4.8
 
 May work with Mono or Wine, but you'll have to test that yourself.
 
@@ -40,6 +40,7 @@ It's public domain, do what you want.
 Other / Credits
 ---------------
 
+- Thanks to Jorch72 for the CS-INVedit this was forked from
 - Thanks to epaGamer for the program icon.
 - Thanks to [PhonicUK][5] for the download / update mirror.
 
