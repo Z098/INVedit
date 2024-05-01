@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{7FC14553-2FB1-4DC1-8C8D-ADBF6319D674}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +7,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>INVedit</RootNamespace>
     <AssemblyName>INVedit</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SourceAnalysisOverrideSettingsFile>C:\Dokumente und Einstellungen\copyboy\Anwendungsdaten\ICSharpCode/SharpDevelop3.0\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
@@ -17,7 +17,8 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
@@ -47,10 +48,39 @@
     <Optimize>false</Optimize>
     <WarningLevel>4</WarningLevel>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <FileAlignment>4096</FileAlignment>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <DebugType>None</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
@@ -62,27 +92,41 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutForm.cs" />
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Data.cs" />
-    <Compile Include="DeleteItemSlot.cs" />
-    <Compile Include="EditForm.cs" />
+    <Compile Include="DeleteItemSlot.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditForm.Designer.cs">
       <DependentUpon>EditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EnchantForm.cs" />
+    <Compile Include="EnchantForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EnchantForm.Designer.cs">
       <DependentUpon>EnchantForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ItemDataForm.cs" />
+    <Compile Include="ItemDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ItemDataForm.Designer.cs">
       <DependentUpon>ItemDataForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Inventory.cs" />
-    <Compile Include="ItemSlot.cs" />
-    <Compile Include="MainForm.cs" />
+    <Compile Include="ItemSlot.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
@@ -93,7 +137,9 @@
     <Compile Include="NBT\NbtTagType.cs" />
     <Compile Include="NBT\NbtTagValue.cs" />
     <Compile Include="NBT\NbtWriter.cs" />
-    <Compile Include="Page.cs" />
+    <Compile Include="Page.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Platform.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +147,7 @@
     <Compile Include="Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Utility\BigEndianReader.cs" />
     <Compile Include="Utility\BigEndianUtility.cs" />
@@ -126,17 +173,701 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="include" />
-    <Folder Include="NBT" />
-    <Folder Include="Utility" />
+    <Folder Include="include\special\items\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="include\items.png" />
-    <None Include="include\items.txt" />
-    <None Include="include\special.png" />
-    <None Include="include\terrain.png" />
+    <Content Include="include\blocks\activatorRail.png" />
+    <Content Include="include\blocks\activatorRail_powered.png" />
+    <Content Include="include\blocks\anvil_base.png" />
+    <Content Include="include\blocks\anvil_top.png" />
+    <Content Include="include\blocks\anvil_top_damaged_0.png" />
+    <Content Include="include\blocks\anvil_top_damaged_1.png" />
+    <Content Include="include\blocks\anvil_top_damaged_2.png" />
+    <Content Include="include\blocks\beacon.png" />
+    <Content Include="include\blocks\bedrock.png" />
+    <Content Include="include\blocks\bed_feet_end.png" />
+    <Content Include="include\blocks\bed_feet_side.png" />
+    <Content Include="include\blocks\bed_feet_top.png" />
+    <Content Include="include\blocks\bed_head_end.png" />
+    <Content Include="include\blocks\bed_head_side.png" />
+    <Content Include="include\blocks\bed_head_top.png" />
+    <Content Include="include\blocks\blockCoal.png" />
+    <Content Include="include\blocks\blockDiamond.png" />
+    <Content Include="include\blocks\blockEmerald.png" />
+    <Content Include="include\blocks\blockGold.png" />
+    <Content Include="include\blocks\blockIron.png" />
+    <Content Include="include\blocks\blockLapis.png" />
+    <Content Include="include\blocks\blockRedstone.png" />
+    <Content Include="include\blocks\bookshelf.png" />
+    <Content Include="include\blocks\brewing_stand.png" />
+    <Content Include="include\blocks\brewing_stand_base.png" />
+    <Content Include="include\blocks\brick.png" />
+    <Content Include="include\blocks\cactus_bottom.png" />
+    <Content Include="include\blocks\cactus_side.png" />
+    <Content Include="include\blocks\cactus_top.png" />
+    <Content Include="include\blocks\cake_bottom.png" />
+    <Content Include="include\blocks\cake_inner.png" />
+    <Content Include="include\blocks\cake_side.png" />
+    <Content Include="include\blocks\cake_top.png" />
+    <Content Include="include\blocks\carrots_0.png" />
+    <Content Include="include\blocks\carrots_1.png" />
+    <Content Include="include\blocks\carrots_2.png" />
+    <Content Include="include\blocks\carrots_3.png" />
+    <Content Include="include\blocks\carrots_stage_0.png" />
+    <Content Include="include\blocks\carrots_stage_1.png" />
+    <Content Include="include\blocks\carrots_stage_2.png" />
+    <Content Include="include\blocks\carrots_stage_3.png" />
+    <Content Include="include\blocks\cauldron_bottom.png" />
+    <Content Include="include\blocks\cauldron_inner.png" />
+    <Content Include="include\blocks\cauldron_side.png" />
+    <Content Include="include\blocks\cauldron_top.png" />
+    <Content Include="include\blocks\clay.png" />
+    <Content Include="include\blocks\coal_block.png" />
+    <Content Include="include\blocks\coal_ore.png" />
+    <Content Include="include\blocks\cobblestone.png" />
+    <Content Include="include\blocks\cobblestone_mossy.png" />
+    <Content Include="include\blocks\cocoa_stage_0.png" />
+    <Content Include="include\blocks\cocoa_stage_1.png" />
+    <Content Include="include\blocks\cocoa_stage_2.png" />
+    <Content Include="include\blocks\command_block.png" />
+    <Content Include="include\blocks\comparator_off.png" />
+    <Content Include="include\blocks\comparator_on.png" />
+    <Content Include="include\blocks\crafting_table_front.png" />
+    <Content Include="include\blocks\crafting_table_side.png" />
+    <Content Include="include\blocks\crafting_table_top.png" />
+    <Content Include="include\blocks\crops_0.png" />
+    <Content Include="include\blocks\crops_1.png" />
+    <Content Include="include\blocks\crops_2.png" />
+    <Content Include="include\blocks\crops_3.png" />
+    <Content Include="include\blocks\crops_4.png" />
+    <Content Include="include\blocks\crops_5.png" />
+    <Content Include="include\blocks\crops_6.png" />
+    <Content Include="include\blocks\crops_7.png" />
+    <Content Include="include\blocks\daylight_detector_side.png" />
+    <Content Include="include\blocks\daylight_detector_top.png" />
+    <Content Include="include\blocks\deadbush.png" />
+    <Content Include="include\blocks\destroy_0.png" />
+    <Content Include="include\blocks\destroy_1.png" />
+    <Content Include="include\blocks\destroy_2.png" />
+    <Content Include="include\blocks\destroy_3.png" />
+    <Content Include="include\blocks\destroy_4.png" />
+    <Content Include="include\blocks\destroy_5.png" />
+    <Content Include="include\blocks\destroy_6.png" />
+    <Content Include="include\blocks\destroy_7.png" />
+    <Content Include="include\blocks\destroy_8.png" />
+    <Content Include="include\blocks\destroy_9.png" />
+    <Content Include="include\blocks\destroy_stage_0.png" />
+    <Content Include="include\blocks\destroy_stage_1.png" />
+    <Content Include="include\blocks\destroy_stage_2.png" />
+    <Content Include="include\blocks\destroy_stage_3.png" />
+    <Content Include="include\blocks\destroy_stage_4.png" />
+    <Content Include="include\blocks\destroy_stage_5.png" />
+    <Content Include="include\blocks\destroy_stage_6.png" />
+    <Content Include="include\blocks\destroy_stage_7.png" />
+    <Content Include="include\blocks\destroy_stage_8.png" />
+    <Content Include="include\blocks\destroy_stage_9.png" />
+    <Content Include="include\blocks\detectorRail.png" />
+    <Content Include="include\blocks\detectorRail_on.png" />
+    <Content Include="include\blocks\diamond_block.png" />
+    <Content Include="include\blocks\diamond_ore.png" />
+    <Content Include="include\blocks\dirt.png" />
+    <Content Include="include\blocks\dirt_podzol_side.png" />
+    <Content Include="include\blocks\dirt_podzol_top.png" />
+    <Content Include="include\blocks\dispenser_front_horizontal.png" />
+    <Content Include="include\blocks\dispenser_front_vertical.png" />
+    <Content Include="include\blocks\doorIron_lower.png" />
+    <Content Include="include\blocks\doorIron_upper.png" />
+    <Content Include="include\blocks\doorWood_lower.png" />
+    <Content Include="include\blocks\doorWood_upper.png" />
+    <Content Include="include\blocks\door_iron_lower.png" />
+    <Content Include="include\blocks\door_iron_upper.png" />
+    <Content Include="include\blocks\door_wood_lower.png" />
+    <Content Include="include\blocks\door_wood_upper.png" />
+    <Content Include="include\blocks\dragonEgg.png" />
+    <Content Include="include\blocks\dragon_egg.png" />
+    <Content Include="include\blocks\dropper_front.png" />
+    <Content Include="include\blocks\dropper_front_horizontal.png" />
+    <Content Include="include\blocks\dropper_front_vertical.png" />
+    <Content Include="include\blocks\emerald_block.png" />
+    <Content Include="include\blocks\emerald_ore.png" />
+    <Content Include="include\blocks\enchanting_table_bottom.png" />
+    <Content Include="include\blocks\enchanting_table_side.png" />
+    <Content Include="include\blocks\enchanting_table_top.png" />
+    <Content Include="include\blocks\enchantment_bottom.png" />
+    <Content Include="include\blocks\enchantment_side.png" />
+    <Content Include="include\blocks\enchantment_top.png" />
+    <Content Include="include\blocks\endframe_eye.png" />
+    <Content Include="include\blocks\endframe_side.png" />
+    <Content Include="include\blocks\endframe_top.png" />
+    <Content Include="include\blocks\end_stone.png" />
+    <Content Include="include\blocks\farmland_dry.png" />
+    <Content Include="include\blocks\farmland_wet.png" />
+    <Content Include="include\blocks\fenceIron.png" />
+    <Content Include="include\blocks\fern.png" />
+    <Content Include="include\blocks\fire_layer_0.png" />
+    <Content Include="include\blocks\fire_layer_1.png" />
+    <Content Include="include\blocks\flower_pot.png" />
+    <Content Include="include\blocks\furnace_front_off.png" />
+    <Content Include="include\blocks\furnace_front_on.png" />
+    <Content Include="include\blocks\furnace_side.png" />
+    <Content Include="include\blocks\furnace_top.png" />
+    <Content Include="include\blocks\glass.png" />
+    <Content Include="include\blocks\glass_pane_top.png" />
+    <Content Include="include\blocks\glowstone.png" />
+    <Content Include="include\blocks\goldenRail.png" />
+    <Content Include="include\blocks\goldenRail_powered.png" />
+    <Content Include="include\blocks\gold_block.png" />
+    <Content Include="include\blocks\gold_ore.png" />
+    <Content Include="include\blocks\grass_side.png" />
+    <Content Include="include\blocks\grass_side_overlay.png" />
+    <Content Include="include\blocks\grass_side_snowed.png" />
+    <Content Include="include\blocks\grass_top.png" />
+    <Content Include="include\blocks\gravel.png" />
+    <Content Include="include\blocks\hay_block_side.png" />
+    <Content Include="include\blocks\hay_block_top.png" />
+    <Content Include="include\blocks\hellrock.png" />
+    <Content Include="include\blocks\hellsand.png" />
+    <Content Include="include\blocks\hopper.png" />
+    <Content Include="include\blocks\hopper_inside.png" />
+    <Content Include="include\blocks\hopper_outside.png" />
+    <Content Include="include\blocks\hopper_top.png" />
+    <Content Include="include\blocks\ice.png" />
+    <Content Include="include\blocks\ice_packed.png" />
+    <Content Include="include\blocks\iron_bars.png" />
+    <Content Include="include\blocks\iron_block.png" />
+    <Content Include="include\blocks\iron_ore.png" />
+    <Content Include="include\blocks\itemframe_back.png" />
+    <Content Include="include\blocks\itemframe_background.png" />
+    <Content Include="include\blocks\jukebox_side.png" />
+    <Content Include="include\blocks\jukebox_top.png" />
+    <Content Include="include\blocks\ladder.png" />
+    <Content Include="include\blocks\lapis_block.png" />
+    <Content Include="include\blocks\lapis_ore.png" />
+    <Content Include="include\blocks\lava_flow.png" />
+    <Content Include="include\blocks\lava_flow.txt" />
+    <Content Include="include\blocks\lava_still.png" />
+    <Content Include="include\blocks\leaves_acacia.png" />
+    <Content Include="include\blocks\leaves_acacia_opaque.png" />
+    <Content Include="include\blocks\leaves_birch.png" />
+    <Content Include="include\blocks\leaves_birch_opaque.png" />
+    <Content Include="include\blocks\leaves_dark_oak.png" />
+    <Content Include="include\blocks\leaves_dark_oak_opaque.png" />
+    <Content Include="include\blocks\leaves_jungle.png" />
+    <Content Include="include\blocks\leaves_jungle_opaque.png" />
+    <Content Include="include\blocks\leaves_oak.png" />
+    <Content Include="include\blocks\leaves_oak_opaque.png" />
+    <Content Include="include\blocks\leaves_spruce.png" />
+    <Content Include="include\blocks\leaves_spruce_opaque.png" />
+    <Content Include="include\blocks\lever.png" />
+    <Content Include="include\blocks\log_acacia.png" />
+    <Content Include="include\blocks\log_acacia_top.png" />
+    <Content Include="include\blocks\log_big_oak.png" />
+    <Content Include="include\blocks\log_big_oak_top.png" />
+    <Content Include="include\blocks\log_birch.png" />
+    <Content Include="include\blocks\log_birch_top.png" />
+    <Content Include="include\blocks\log_jungle.png" />
+    <Content Include="include\blocks\log_jungle_top.png" />
+    <Content Include="include\blocks\log_oak.png" />
+    <Content Include="include\blocks\log_oak_top.png" />
+    <Content Include="include\blocks\log_spruce.png" />
+    <Content Include="include\blocks\log_spruce_top.png" />
+    <Content Include="include\blocks\melon_side.png" />
+    <Content Include="include\blocks\melon_stem_connected.png" />
+    <Content Include="include\blocks\melon_stem_disconnected.png" />
+    <Content Include="include\blocks\melon_top.png" />
+    <Content Include="include\blocks\mob_spawner.png" />
+    <Content Include="include\blocks\mushroom_block_inside.png" />
+    <Content Include="include\blocks\mushroom_block_skin_brown.png" />
+    <Content Include="include\blocks\mushroom_block_skin_red.png" />
+    <Content Include="include\blocks\mushroom_block_skin_stem.png" />
+    <Content Include="include\blocks\mushroom_brown.png" />
+    <Content Include="include\blocks\mushroom_red.png" />
+    <Content Include="include\blocks\mycelium_side.png" />
+    <Content Include="include\blocks\mycelium_top.png" />
+    <Content Include="include\blocks\netherquartz.png" />
+    <Content Include="include\blocks\netherrack.png" />
+    <Content Include="include\blocks\nether_brick.png" />
+    <Content Include="include\blocks\nether_wart_stage_0.png" />
+    <Content Include="include\blocks\nether_wart_stage_1.png" />
+    <Content Include="include\blocks\nether_wart_stage_2.png" />
+    <Content Include="include\blocks\noteblock.png" />
+    <Content Include="include\blocks\obsidian.png" />
+    <Content Include="include\blocks\piston_bottom.png" />
+    <Content Include="include\blocks\piston_inner.png" />
+    <Content Include="include\blocks\piston_inner_top.png" />
+    <Content Include="include\blocks\piston_side.png" />
+    <Content Include="include\blocks\piston_top_normal.png" />
+    <Content Include="include\blocks\piston_top_sticky.png" />
+    <Content Include="include\blocks\planks_acacia.png" />
+    <Content Include="include\blocks\planks_big_oak.png" />
+    <Content Include="include\blocks\planks_birch.png" />
+    <Content Include="include\blocks\planks_jungle.png" />
+    <Content Include="include\blocks\planks_oak.png" />
+    <Content Include="include\blocks\planks_spruce.png" />
+    <Content Include="include\blocks\portal.png" />
+    <Content Include="include\blocks\potatoes_stage_0.png" />
+    <Content Include="include\blocks\potatoes_stage_1.png" />
+    <Content Include="include\blocks\potatoes_stage_2.png" />
+    <Content Include="include\blocks\potatoes_stage_3.png" />
+    <Content Include="include\blocks\pumpkin_face_off.png" />
+    <Content Include="include\blocks\pumpkin_face_on.png" />
+    <Content Include="include\blocks\pumpkin_side.png" />
+    <Content Include="include\blocks\pumpkin_stem_connected.png" />
+    <Content Include="include\blocks\pumpkin_stem_disconnected.png" />
+    <Content Include="include\blocks\pumpkin_top.png" />
+    <Content Include="include\blocks\quartzblockchiseled.png" />
+    <Content Include="include\blocks\quartzblocklines.png" />
+    <Content Include="include\blocks\quartzblockside.png" />
+    <Content Include="include\blocks\quartzblocktop.png" />
+    <Content Include="include\blocks\quartzblock_bottom.png" />
+    <Content Include="include\blocks\quartzblock_chiseled_top.png" />
+    <Content Include="include\blocks\quartzblock_lines_top.png" />
+    <Content Include="include\blocks\quartzstairs.png" />
+    <Content Include="include\blocks\quartz_block_bottom.png" />
+    <Content Include="include\blocks\quartz_block_chiseled.png" />
+    <Content Include="include\blocks\quartz_block_chiseled_top.png" />
+    <Content Include="include\blocks\quartz_block_lines.png" />
+    <Content Include="include\blocks\quartz_block_lines_top.png" />
+    <Content Include="include\blocks\quartz_block_side.png" />
+    <Content Include="include\blocks\quartz_block_top.png" />
+    <Content Include="include\blocks\quartz_ore.png" />
+    <Content Include="include\blocks\rail_activator.png" />
+    <Content Include="include\blocks\rail_activator_powered.png" />
+    <Content Include="include\blocks\rail_detector.png" />
+    <Content Include="include\blocks\rail_detector_powered.png" />
+    <Content Include="include\blocks\rail_golden.png" />
+    <Content Include="include\blocks\rail_golden_powered.png" />
+    <Content Include="include\blocks\rail_normal.png" />
+    <Content Include="include\blocks\rail_normal_turned.png" />
+    <Content Include="include\blocks\redstoneDust_cross.png" />
+    <Content Include="include\blocks\redstoneDust_cross_overlay.png" />
+    <Content Include="include\blocks\redstoneDust_line.png" />
+    <Content Include="include\blocks\redstoneDust_line_overlay.png" />
+    <Content Include="include\blocks\redstoneLight.png" />
+    <Content Include="include\blocks\redstoneLight_lit.png" />
+    <Content Include="include\blocks\redstone_block.png" />
+    <Content Include="include\blocks\redstone_dust_cross.png" />
+    <Content Include="include\blocks\redstone_dust_cross_overlay.png" />
+    <Content Include="include\blocks\redstone_dust_line.png" />
+    <Content Include="include\blocks\redstone_dust_line_overlay.png" />
+    <Content Include="include\blocks\redstone_lamp_off.png" />
+    <Content Include="include\blocks\redstone_lamp_on.png" />
+    <Content Include="include\blocks\redstone_ore.png" />
+    <Content Include="include\blocks\redstone_torch_off.png" />
+    <Content Include="include\blocks\redstone_torch_on.png" />
+    <Content Include="include\blocks\red_sand.png" />
+    <Content Include="include\blocks\reeds.png" />
+    <Content Include="include\blocks\repeater_off.png" />
+    <Content Include="include\blocks\repeater_on.png" />
+    <Content Include="include\blocks\sand.png" />
+    <Content Include="include\blocks\sandstone_bottom.png" />
+    <Content Include="include\blocks\sandstone_carved.png" />
+    <Content Include="include\blocks\sandstone_normal.png" />
+    <Content Include="include\blocks\sandstone_side.png" />
+    <Content Include="include\blocks\sandstone_smooth.png" />
+    <Content Include="include\blocks\sandstone_top.png" />
+    <Content Include="include\blocks\sapling_acacia.png" />
+    <Content Include="include\blocks\sapling_birch.png" />
+    <Content Include="include\blocks\sapling_dark_oak.png" />
+    <Content Include="include\blocks\sapling_jungle.png" />
+    <Content Include="include\blocks\sapling_oak.png" />
+    <Content Include="include\blocks\sapling_spruce.png" />
+    <Content Include="include\blocks\snow.png" />
+    <Content Include="include\blocks\snow_side.png" />
+    <Content Include="include\blocks\soul_sand.png" />
+    <Content Include="include\blocks\sponge.png" />
+    <Content Include="include\blocks\stem_bent.png" />
+    <Content Include="include\blocks\stem_straight.png" />
+    <Content Include="include\blocks\stone.png" />
+    <Content Include="include\blocks\stonebrick.png" />
+    <Content Include="include\blocks\stonebrick_carved.png" />
+    <Content Include="include\blocks\stonebrick_cracked.png" />
+    <Content Include="include\blocks\stonebrick_mossy.png" />
+    <Content Include="include\blocks\stone_moss.png" />
+    <Content Include="include\blocks\stone_slab_side.png" />
+    <Content Include="include\blocks\stone_slab_top.png" />
+    <Content Include="include\blocks\tallgrass.png" />
+    <Content Include="include\blocks\thinglass_top.png" />
+    <Content Include="include\blocks\tnt_bottom.png" />
+    <Content Include="include\blocks\tnt_side.png" />
+    <Content Include="include\blocks\tnt_top.png" />
+    <Content Include="include\blocks\torch_on.png" />
+    <Content Include="include\blocks\trapdoor.png" />
+    <Content Include="include\blocks\trip_wire.png" />
+    <Content Include="include\blocks\trip_wire_source.png" />
+    <Content Include="include\blocks\vine.png" />
+    <Content Include="include\blocks\water.txt" />
+    <Content Include="include\blocks\waterlily.png" />
+    <Content Include="include\blocks\water_flow.png" />
+    <Content Include="include\blocks\water_still.png" />
+    <Content Include="include\blocks\web.png" />
+    <Content Include="include\blocks\wheat_stage_0.png" />
+    <Content Include="include\blocks\wheat_stage_1.png" />
+    <Content Include="include\blocks\wheat_stage_2.png" />
+    <Content Include="include\blocks\wheat_stage_3.png" />
+    <Content Include="include\blocks\wheat_stage_4.png" />
+    <Content Include="include\blocks\wheat_stage_5.png" />
+    <Content Include="include\blocks\wheat_stage_6.png" />
+    <Content Include="include\blocks\wheat_stage_7.png" />
+    <Content Include="include\blocks\wood.png" />
+    <Content Include="include\blocks\wood_birch.png" />
+    <Content Include="include\blocks\wood_jungle.png" />
+    <Content Include="include\blocks\wood_spruce.png" />
+    <Content Include="include\blocks\wool_colored_black.png" />
+    <Content Include="include\blocks\wool_colored_blue.png" />
+    <Content Include="include\blocks\wool_colored_brown.png" />
+    <Content Include="include\blocks\wool_colored_cyan.png" />
+    <Content Include="include\blocks\wool_colored_gray.png" />
+    <Content Include="include\blocks\wool_colored_green.png" />
+    <Content Include="include\blocks\wool_colored_light_blue.png" />
+    <Content Include="include\blocks\wool_colored_lime.png" />
+    <Content Include="include\blocks\wool_colored_magenta.png" />
+    <Content Include="include\blocks\wool_colored_orange.png" />
+    <Content Include="include\blocks\wool_colored_pink.png" />
+    <Content Include="include\blocks\wool_colored_purple.png" />
+    <Content Include="include\blocks\wool_colored_red.png" />
+    <Content Include="include\blocks\wool_colored_silver.png" />
+    <Content Include="include\blocks\wool_colored_white.png" />
+    <Content Include="include\blocks\wool_colored_yellow.png" />
+    <Content Include="include\blocks\workbench_front.png" />
+    <Content Include="include\blocks\workbench_side.png" />
+    <Content Include="include\blocks\workbench_top.png" />
+    <Content Include="include\clay\clayHardened.png" />
+    <Content Include="include\clay\clayHardenedStained_0.png" />
+    <Content Include="include\clay\clayHardenedStained_1.png" />
+    <Content Include="include\clay\clayHardenedStained_10.png" />
+    <Content Include="include\clay\clayHardenedStained_11.png" />
+    <Content Include="include\clay\clayHardenedStained_12.png" />
+    <Content Include="include\clay\clayHardenedStained_13.png" />
+    <Content Include="include\clay\clayHardenedStained_14.png" />
+    <Content Include="include\clay\clayHardenedStained_15.png" />
+    <Content Include="include\clay\clayHardenedStained_2.png" />
+    <Content Include="include\clay\clayHardenedStained_3.png" />
+    <Content Include="include\clay\clayHardenedStained_4.png" />
+    <Content Include="include\clay\clayHardenedStained_5.png" />
+    <Content Include="include\clay\clayHardenedStained_6.png" />
+    <Content Include="include\clay\clayHardenedStained_7.png" />
+    <Content Include="include\clay\clayHardenedStained_8.png" />
+    <Content Include="include\clay\clayHardenedStained_9.png" />
+    <Content Include="include\flowers\doublePlant_fern_bottom.png" />
+    <Content Include="include\flowers\doublePlant_fern_top.png" />
+    <Content Include="include\flowers\doublePlant_grass_bottom.png" />
+    <Content Include="include\flowers\doublePlant_grass_top.png" />
+    <Content Include="include\flowers\doublePlant_paeonia_bottom.png" />
+    <Content Include="include\flowers\doublePlant_paeonia_top.png" />
+    <Content Include="include\flowers\doublePlant_rose_bottom.png" />
+    <Content Include="include\flowers\doublePlant_rose_top.png" />
+    <Content Include="include\flowers\doublePlant_sunflower_back.png" />
+    <Content Include="include\flowers\doublePlant_sunflower_bottom.png" />
+    <Content Include="include\flowers\doublePlant_sunflower_front.png" />
+    <Content Include="include\flowers\doublePlant_sunflower_top.png" />
+    <Content Include="include\flowers\doublePlant_syringa_bottom.png" />
+    <Content Include="include\flowers\doublePlant_syringa_top.png" />
+    <Content Include="include\flowers\flower_allium.png" />
+    <Content Include="include\flowers\flower_blue_orchid.png" />
+    <Content Include="include\flowers\flower_dandelion.png" />
+    <Content Include="include\flowers\flower_houstonia.png" />
+    <Content Include="include\flowers\flower_oxeye_daisy.png" />
+    <Content Include="include\flowers\flower_paeonia.png" />
+    <Content Include="include\flowers\flower_Rose.png" />
+    <Content Include="include\flowers\flower_tulip_orange.png" />
+    <Content Include="include\flowers\flower_tulip_pink.png" />
+    <Content Include="include\flowers\flower_tulip_red.png" />
+    <Content Include="include\flowers\flower_tulip_white.png" />
+    <Content Include="include\glass\glass.png" />
+    <Content Include="include\glass\glass_black.png" />
+    <Content Include="include\glass\glass_blue.png" />
+    <Content Include="include\glass\glass_brown.png" />
+    <Content Include="include\glass\glass_cyan.png" />
+    <Content Include="include\glass\glass_gray.png" />
+    <Content Include="include\glass\glass_green.png" />
+    <Content Include="include\glass\glass_light_blue.png" />
+    <Content Include="include\glass\glass_lime.png" />
+    <Content Include="include\glass\glass_magenta.png" />
+    <Content Include="include\glass\glass_orange.png" />
+    <Content Include="include\glass\glass_pink.png" />
+    <Content Include="include\glass\glass_purple.png" />
+    <Content Include="include\glass\glass_red.png" />
+    <Content Include="include\glass\glass_silver.png" />
+    <Content Include="include\glass\glass_white.png" />
+    <Content Include="include\glass\glass_yellow.png" />
+    <Content Include="include\items.png" />
+    <Content Include="include\items.txt" />
+    <Content Include="include\items\apple.png" />
+    <Content Include="include\items\apple_golden.png" />
+    <Content Include="include\items\arrow.png" />
+    <Content Include="include\items\bed.png" />
+    <Content Include="include\items\beef_cooked.png" />
+    <Content Include="include\items\beef_raw.png" />
+    <Content Include="include\items\blaze_powder.png" />
+    <Content Include="include\items\blaze_rod.png" />
+    <Content Include="include\items\boat.png" />
+    <Content Include="include\items\bone.png" />
+    <Content Include="include\items\book_enchanted.png" />
+    <Content Include="include\items\book_normal.png" />
+    <Content Include="include\items\book_writable.png" />
+    <Content Include="include\items\book_written.png" />
+    <Content Include="include\items\bowl.png" />
+    <Content Include="include\items\bow_pulling_0.png" />
+    <Content Include="include\items\bow_pulling_1.png" />
+    <Content Include="include\items\bow_pulling_2.png" />
+    <Content Include="include\items\bow_standby.png" />
+    <Content Include="include\items\bread.png" />
+    <Content Include="include\items\brewing_stand.png" />
+    <Content Include="include\items\brick.png" />
+    <Content Include="include\items\bucket_empty.png" />
+    <Content Include="include\items\bucket_lava.png" />
+    <Content Include="include\items\bucket_milk.png" />
+    <Content Include="include\items\bucket_water.png" />
+    <Content Include="include\items\cake.png" />
+    <Content Include="include\items\carrot.png" />
+    <Content Include="include\items\carrot_golden.png" />
+    <Content Include="include\items\carrot_on_a_stick.png" />
+    <Content Include="include\items\cauldron.png" />
+    <Content Include="include\items\chainmail_boots.png" />
+    <Content Include="include\items\chainmail_chestplate.png" />
+    <Content Include="include\items\chainmail_helmet.png" />
+    <Content Include="include\items\chainmail_leggings.png" />
+    <Content Include="include\items\charcoal.png" />
+    <Content Include="include\items\chicken_cooked.png" />
+    <Content Include="include\items\chicken_raw.png" />
+    <Content Include="include\items\clay_ball.png" />
+    <Content Include="include\items\clock.png" />
+    <Content Include="include\items\coal.png" />
+    <Content Include="include\items\comparator.png" />
+    <Content Include="include\items\compass.png" />
+    <Content Include="include\items\cookie.png" />
+    <Content Include="include\items\diamond.png" />
+    <Content Include="include\items\diamond_axe.png" />
+    <Content Include="include\items\diamond_boots.png" />
+    <Content Include="include\items\diamond_chestplate.png" />
+    <Content Include="include\items\diamond_helmet.png" />
+    <Content Include="include\items\diamond_hoe.png" />
+    <Content Include="include\items\diamond_horse_armor.png" />
+    <Content Include="include\items\diamond_leggings.png" />
+    <Content Include="include\items\diamond_pickaxe.png" />
+    <Content Include="include\items\diamond_shovel.png" />
+    <Content Include="include\items\diamond_sword.png" />
+    <Content Include="include\items\door_iron.png" />
+    <Content Include="include\items\door_wood.png" />
+    <Content Include="include\items\dye_powder_black.png" />
+    <Content Include="include\items\dye_powder_blue.png" />
+    <Content Include="include\items\dye_powder_brown.png" />
+    <Content Include="include\items\dye_powder_cyan.png" />
+    <Content Include="include\items\dye_powder_gray.png" />
+    <Content Include="include\items\dye_powder_green.png" />
+    <Content Include="include\items\dye_powder_light_blue.png" />
+    <Content Include="include\items\dye_powder_lime.png" />
+    <Content Include="include\items\dye_powder_magenta.png" />
+    <Content Include="include\items\dye_powder_orange.png" />
+    <Content Include="include\items\dye_powder_pink.png" />
+    <Content Include="include\items\dye_powder_purple.png" />
+    <Content Include="include\items\dye_powder_red.png" />
+    <Content Include="include\items\dye_powder_silver.png" />
+    <Content Include="include\items\dye_powder_white.png" />
+    <Content Include="include\items\dye_powder_yellow.png" />
+    <Content Include="include\items\egg.png" />
+    <Content Include="include\items\emerald.png" />
+    <Content Include="include\items\empty_armor_slot_boots.png" />
+    <Content Include="include\items\empty_armor_slot_chestplate.png" />
+    <Content Include="include\items\empty_armor_slot_helmet.png" />
+    <Content Include="include\items\empty_armor_slot_leggings.png" />
+    <Content Include="include\items\ender_eye.png" />
+    <Content Include="include\items\ender_pearl.png" />
+    <Content Include="include\items\experience_bottle.png" />
+    <Content Include="include\items\feather.png" />
+    <Content Include="include\items\fireball.png" />
+    <Content Include="include\items\fireworks.png" />
+    <Content Include="include\items\fireworks_charge.png" />
+    <Content Include="include\items\fireworks_charge_overlay.png" />
+    <Content Include="include\items\fishing_rod_cast.png" />
+    <Content Include="include\items\fishing_rod_uncast.png" />
+    <Content Include="include\items\fish_clownfish_raw.png" />
+    <Content Include="include\items\fish_cod_cooked.png" />
+    <Content Include="include\items\fish_cod_raw.png" />
+    <Content Include="include\items\fish_pufferfish_raw.png" />
+    <Content Include="include\items\fish_salmon_cooked.png" />
+    <Content Include="include\items\fish_salmon_raw.png" />
+    <Content Include="include\items\flint.png" />
+    <Content Include="include\items\flint_and_steel.png" />
+    <Content Include="include\items\flower_pot.png" />
+    <Content Include="include\items\ghast_tear.png" />
+    <Content Include="include\items\glowstone_dust.png" />
+    <Content Include="include\items\gold_axe.png" />
+    <Content Include="include\items\gold_boots.png" />
+    <Content Include="include\items\gold_chestplate.png" />
+    <Content Include="include\items\gold_helmet.png" />
+    <Content Include="include\items\gold_hoe.png" />
+    <Content Include="include\items\gold_horse_armor.png" />
+    <Content Include="include\items\gold_ingot.png" />
+    <Content Include="include\items\gold_leggings.png" />
+    <Content Include="include\items\gold_nugget.png" />
+    <Content Include="include\items\gold_pickaxe.png" />
+    <Content Include="include\items\gold_shovel.png" />
+    <Content Include="include\items\gold_sword.png" />
+    <Content Include="include\items\gunpowder.png" />
+    <Content Include="include\items\hopper.png" />
+    <Content Include="include\items\iron_axe.png" />
+    <Content Include="include\items\iron_boots.png" />
+    <Content Include="include\items\iron_chestplate.png" />
+    <Content Include="include\items\iron_helmet.png" />
+    <Content Include="include\items\iron_hoe.png" />
+    <Content Include="include\items\iron_horse_armor.png" />
+    <Content Include="include\items\iron_ingot.png" />
+    <Content Include="include\items\iron_leggings.png" />
+    <Content Include="include\items\iron_pickaxe.png" />
+    <Content Include="include\items\iron_shovel.png" />
+    <Content Include="include\items\iron_sword.png" />
+    <Content Include="include\items\item_frame.png" />
+    <Content Include="include\items\lead.png" />
+    <Content Include="include\items\leather.png" />
+    <Content Include="include\items\leather_boots.png" />
+    <Content Include="include\items\leather_boots_overlay.png" />
+    <Content Include="include\items\leather_chestplate.png" />
+    <Content Include="include\items\leather_chestplate_overlay.png" />
+    <Content Include="include\items\leather_helmet.png" />
+    <Content Include="include\items\leather_helmet_overlay.png" />
+    <Content Include="include\items\leather_leggings.png" />
+    <Content Include="include\items\leather_leggings_overlay.png" />
+    <Content Include="include\items\magma_cream.png" />
+    <Content Include="include\items\map_empty.png" />
+    <Content Include="include\items\map_filled.png" />
+    <Content Include="include\items\melon.png" />
+    <Content Include="include\items\melon_speckled.png" />
+    <Content Include="include\items\minecart_chest.png" />
+    <Content Include="include\items\minecart_command_block.png" />
+    <Content Include="include\items\minecart_furnace.png" />
+    <Content Include="include\items\minecart_hopper.png" />
+    <Content Include="include\items\minecart_normal.png" />
+    <Content Include="include\items\minecart_tnt.png" />
+    <Content Include="include\items\mushroom_stew.png" />
+    <Content Include="include\items\name_tag.png" />
+    <Content Include="include\items\netherbrick.png" />
+    <Content Include="include\items\nether_star.png" />
+    <Content Include="include\items\nether_wart.png" />
+    <Content Include="include\items\painting.png" />
+    <Content Include="include\items\paper.png" />
+    <Content Include="include\items\porkchop_cooked.png" />
+    <Content Include="include\items\porkchop_raw.png" />
+    <Content Include="include\items\potato.png" />
+    <Content Include="include\items\potato_baked.png" />
+    <Content Include="include\items\potato_poisonous.png" />
+    <Content Include="include\items\potion_bottle_drinkable.png" />
+    <Content Include="include\items\potion_bottle_empty.png" />
+    <Content Include="include\items\potion_bottle_splash.png" />
+    <Content Include="include\items\potion_overlay.png" />
+    <Content Include="include\items\pumpkin_pie.png" />
+    <Content Include="include\items\quartz.png" />
+    <Content Include="include\items\quiver.png" />
+    <Content Include="include\items\record_11.png" />
+    <Content Include="include\items\record_13.png" />
+    <Content Include="include\items\record_blocks.png" />
+    <Content Include="include\items\record_cat.png" />
+    <Content Include="include\items\record_chirp.png" />
+    <Content Include="include\items\record_far.png" />
+    <Content Include="include\items\record_mall.png" />
+    <Content Include="include\items\record_mellohi.png" />
+    <Content Include="include\items\record_stal.png" />
+    <Content Include="include\items\record_strad.png" />
+    <Content Include="include\items\record_wait.png" />
+    <Content Include="include\items\record_ward.png" />
+    <Content Include="include\items\redstone_dust.png" />
+    <Content Include="include\items\reeds.png" />
+    <Content Include="include\items\repeater.png" />
+    <Content Include="include\items\rotten_flesh.png" />
+    <Content Include="include\items\ruby.png" />
+    <Content Include="include\items\saddle.png" />
+    <Content Include="include\items\seeds_melon.png" />
+    <Content Include="include\items\seeds_pumpkin.png" />
+    <Content Include="include\items\seeds_wheat.png" />
+    <Content Include="include\items\shears.png" />
+    <Content Include="include\items\sign.png" />
+    <Content Include="include\items\skull_creeper.png" />
+    <Content Include="include\items\skull_skeleton.png" />
+    <Content Include="include\items\skull_steve.png" />
+    <Content Include="include\items\skull_wither.png" />
+    <Content Include="include\items\skull_zombie.png" />
+    <Content Include="include\items\slimeball.png" />
+    <Content Include="include\items\snowball.png" />
+    <Content Include="include\items\spawn_egg.png" />
+    <Content Include="include\items\spawn_egg_overlay.png" />
+    <Content Include="include\items\spider_eye.png" />
+    <Content Include="include\items\spider_eye_fermented.png" />
+    <Content Include="include\items\stick.png" />
+    <Content Include="include\items\stone_axe.png" />
+    <Content Include="include\items\stone_hoe.png" />
+    <Content Include="include\items\stone_pickaxe.png" />
+    <Content Include="include\items\stone_shovel.png" />
+    <Content Include="include\items\stone_sword.png" />
+    <Content Include="include\items\string.png" />
+    <Content Include="include\items\sugar.png" />
+    <Content Include="include\items\wheat.png" />
+    <Content Include="include\items\wood_axe.png" />
+    <Content Include="include\items\wood_hoe.png" />
+    <Content Include="include\items\wood_pickaxe.png" />
+    <Content Include="include\items\wood_shovel.png" />
+    <Content Include="include\items\wood_sword.png" />
+    <Content Include="include\panes\glass_pane_top.png" />
+    <Content Include="include\panes\glass_pane_top_black.png" />
+    <Content Include="include\panes\glass_pane_top_blue.png" />
+    <Content Include="include\panes\glass_pane_top_brown.png" />
+    <Content Include="include\panes\glass_pane_top_cyan.png" />
+    <Content Include="include\panes\glass_pane_top_gray.png" />
+    <Content Include="include\panes\glass_pane_top_green.png" />
+    <Content Include="include\panes\glass_pane_top_light_blue.png" />
+    <Content Include="include\panes\glass_pane_top_lime.png" />
+    <Content Include="include\panes\glass_pane_top_magenta.png" />
+    <Content Include="include\panes\glass_pane_top_orange.png" />
+    <Content Include="include\panes\glass_pane_top_pink.png" />
+    <Content Include="include\panes\glass_pane_top_purple.png" />
+    <Content Include="include\panes\glass_pane_top_red.png" />
+    <Content Include="include\panes\glass_pane_top_silver.png" />
+    <Content Include="include\panes\glass_pane_top_white.png" />
+    <Content Include="include\panes\glass_pane_top_yellow.png" />
+    <Content Include="include\special.png" />
+    <Content Include="include\special\blocks\beacon.png" />
+    <Content Include="include\special\decoration\anvil_new.png" />
+    <Content Include="include\special\decoration\anvil_slightly_damaged.png" />
+    <Content Include="include\special\decoration\dragon_egg.png" />
+    <Content Include="include\special\decoration\fence.png" />
+    <Content Include="include\special\decoration\leaves_birch.png" />
+    <Content Include="include\special\decoration\leaves_jungle.png" />
+    <Content Include="include\special\decoration\leaves_oak.png" />
+    <Content Include="include\special\decoration\leaves_spruce.png" />
+    <Content Include="include\special\decoration\moss_stone_wall.png" />
+    <Content Include="include\special\decoration\stone_wall.png" />
+    <Content Include="include\special\potions\potion_mundane_splash.png" />
+    <Content Include="include\special\slabs\acacia_slab.png" />
+    <Content Include="include\special\slabs\big_oak_slab.png" />
+    <Content Include="include\special\slabs\cobblestone_slab.png" />
+    <Content Include="include\special\slabs\planks_birch.png" />
+    <Content Include="include\special\slabs\planks_jungle.png" />
+    <Content Include="include\special\slabs\planks_oak.png" />
+    <Content Include="include\special\slabs\planks_spruce.png" />
+    <Content Include="include\special\spawn_eggs\egg_creeper.png" />
+    <Content Include="include\special\stairs\acacia_stairs.png" />
+    <Content Include="include\special\stairs\brick_stairs.png" />
+    <Content Include="include\special\stairs\cobblestone_stairs.png" />
+    <Content Include="include\special\stairs\dark_wood_stairs.png" />
+    <Content Include="include\special\stairs\planks_birch.png" />
+    <Content Include="include\special\stairs\planks_jungle.png" />
+    <Content Include="include\special\stairs\planks_oak.png" />
+    <Content Include="include\special\stairs\planks_spruce.png" />
+    <Content Include="include\terrain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="include\blocks\fire_layer_0.png.mcmeta" />
+    <None Include="include\blocks\fire_layer_1.png.mcmeta" />
+    <None Include="include\blocks\lava_flow.png.mcmeta" />
+    <None Include="include\blocks\lava_still.png.mcmeta" />
+    <None Include="include\blocks\portal.png.mcmeta" />
+    <None Include="include\blocks\water_flow.png.mcmeta" />
+    <None Include="include\blocks\water_still.png.mcmeta" />
+    <None Include="include\items\clock.png.mcmeta" />
+    <None Include="include\items\compass.png.mcmeta" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /q /y "$(ProjectDir)include\*" "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>xcopy /e /q /y "$(ProjectDir)include\*" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
