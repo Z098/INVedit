@@ -3,9 +3,7 @@ Z098 INVedit
 
 Z098 INVedit is an inventory editor for the game [Minecraft][1].
 
-![Screenshot][2]
-
-Downloads and more information can be found in the [Minecraft Forum Thread][3].
+Screenshot will be added with first release.
 
 Features
 --------
