@@ -32,7 +32,7 @@ It's public domain, do what you want.
 
 ### Exceptions ###
 
-- [Silk Icons][4], by Mark James.
+- Silk Icons, by Mark James. (Don't have a link)
 - [Minecraft][1] sprites, Mojang.
 
 Other / Credits
@@ -40,10 +40,7 @@ Other / Credits
 
 - Thanks to Jorch72 for the CS-INVedit this was forked from
 - Thanks to epaGamer for the program icon.
-- Thanks to [PhonicUK][5] for the download / update mirror.
+- Thanks to [PhonicUK][2] for the download / update mirror.
 
 [1]: http://minecraft.net
-[2]: http://copy.mcft.net/mc/INVedit/screens/main.png
-[3]: http://www.minecraftforum.net/topic/14190-
-[4]: http://www.famfamfam.com/archive/silk-icons-thats-your-lot/
-[5]: http://phonicuk.com/
+[2]: http://phonicuk.com/
